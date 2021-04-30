@@ -15,4 +15,5 @@ export const Flex = styled.div`
     margin: auto;
     ${(props) => props.column ? 'flex-direction: column;' : ''}
     ${(props) => props.margin ? `margin: ${props.margin};` : ''}
+    ${(props) => props.width ? `width: ${props.width};` : ''}
 `

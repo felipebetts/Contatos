@@ -6,7 +6,7 @@ const User = require('../models/User')
 const secret = 'ap98ryqn2479g0qmjyfbonvj8qex07v'
 
 
-const passwordRegex = /((?=.*[a-z])(?=.*[A-Z]).{4,20})/
+// const passwordRegex = /((?=.*[a-z])(?=.*[A-Z]).{4,20})/
 //  senha deve ter entre 4 e 20 caracteres, com letras maiusculas e minusculas
 
 const sendErrorsFromDB = (res, dbErrors) => {
@@ -20,14 +20,6 @@ const register = (req, res) => {
     const name = req.body.name || ''
     const password = req.body.password || ''
 
-    if (!password.match(passwordRegex)) {
-        return res.status(400).send({
-            errors: [
-                'Senha precisa ter entre 4 e 20 caracteres, contendo letras maiúsculas e minúsculas'
-            ]
-        })
-    }
-
     const salt = bcrypt.genSaltSync()
     const hashedPassword = bcrypt.hashSync(password, salt)
     
@@ -36,11 +28,7 @@ const register = (req, res) => {
         if (err) {
             return sendErrorsFromDB(ress, error)
         } else if (user) {
-            return res.status(400).send({
-                errors: [
-                    'Usuário já está cadastrado'
-                ]
-            })
+            login(req, res)
         } else {
             // agora cadastramos o usuário:
 
@@ -69,7 +57,7 @@ const login = (req, res) => {
                 expiresIn: '1 day'
             })
             const { name } = user
-            res.json({ name, token})
+            res.json({ ...user._doc})
         } else {
             return res.status(400).send({
                 errors: [

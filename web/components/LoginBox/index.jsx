@@ -3,41 +3,56 @@ import { Flex } from "../Containers"
 import { Container, InputContainer } from "./styles"
 import { useEffect, useState } from "react"
 import { Button } from "../Button"
+import axios from "axios"
+import { _baseUrl, userIdKey } from '../../constants'
+import { useRouter } from "next/router"
 
 
 const LoginBox = () => {
 
-    const [userInput, setUserInput] = useState({
-        username: null,
-        password: null
-    })
+    const [name, setName] = useState('')
+    const [password, setPassword] = useState('')
 
-    const handleChange = e => {
-        setUserInput({
-            ...userInput,
-            [e.target.name]: [e.target.value]
-        })
-    }
-
-    useEffect(() => {
-
-    }, [userInput])
-
+    const router = useRouter()
+    
     return (
         <Container>
             <Flex column>
-                <H2>Entre na sua conta</H2>
+                <H2>Acesse ou crie uma conta</H2>
                 <Flex column>
                     <InputContainer>
                         <label htmlFor='username'>Usuário</label>
-                        <input id='username' value={userInput.username} onChange={e => handleChange(e)} />
+                        <input id='username' value={name} onChange={e => setName(e.target.value)} />
                     </InputContainer>
                     <InputContainer>
                         <label htmlFor='password'>Senha</label>
-                        <input id='password' type='password' value={userInput.password} onChange={e => handleChange(e)} />
+                        <input id='password' type='password' value={password} onChange={e => setPassword(e.target.value)} />
                     </InputContainer>
                 </Flex>
-                <Button outlined>Entrar</Button>
+                <Button
+                    outlined
+                    onClick={() => {
+                        // if ( userInput.username && userInput.password) {
+                            const reqData = { name, password }
+                            console.log('reqData: ', reqData)
+                            axios.post(`${_baseUrl}/oapi/register`, reqData)
+                                .then(res => {
+                                    if (res.data) {
+                                        console.log(res.data)
+                                        localStorage.setItem(userIdKey, res.data._id)
+                                    }
+                                })
+                                .then(() => {
+                                    router.push('/contatos')
+                                })
+                                .catch(err => {
+                                    console.log(err)
+                                })
+                        // }
+                    }}
+                >
+                    Entrar
+                </Button>
             </Flex>
         </Container>
     )

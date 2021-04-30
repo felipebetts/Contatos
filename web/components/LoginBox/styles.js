@@ -4,13 +4,19 @@ export const Container = styled.div`
     margin: 5%;
     margin-top: 0;
     padding: 2rem;
+    height: 100%;
 
     width: 50%;
-
+    max-width: 400px;
+    
     border-radius: 5px;
-
+    
     background: ${({ theme }) => theme.colors.background.secondary};
     color: ${({ theme }) => theme.colors.font.secondary};
+    
+    @media(max-width: 800px) {
+        width: 100%;
+    }
 `
 
 export const InputContainer = styled.div`
@@ -44,5 +50,18 @@ export const InputContainer = styled.div`
             
         }
     
+    }
+
+    @media(max-width: 800px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        label {
+            margin-bottom: 10px;
+        }
+        
+        input {
+            margin-bottom: 15px;
+        }
     }
 `
