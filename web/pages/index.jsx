@@ -8,7 +8,7 @@ const Main = () => {
         <Layout>
 
         <Flex column>
-            <H1>Contatos.</H1>
+            <H1 title>Contatos.</H1>
             <LoginBox />
         </Flex>
         </Layout>

@@ -9,7 +9,7 @@ const theme = {
     font: {
       primary: '#eaeaea',
       secondary: '#2a2a2a'
-    } 
+    }
   }
 }
 
@@ -34,8 +34,8 @@ const GlobalStyle = createGlobalStyle`
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Component {...pageProps} />
+        <GlobalStyle />
+        <Component {...pageProps} />
     </ThemeProvider>
   )
 }
