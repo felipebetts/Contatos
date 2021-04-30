@@ -1,8 +1,8 @@
 # Contatos
 
-Instruçôes para executar o projeto: 
+Instruções para executar o projeto: 
 
-obs: se preferir pode acessar o link web:  e apenas fazer o passo a passo abaixo para o servidor
+obs: se preferir pode acessar o link web: https://contatos.vercel.app/ e apenas fazer o passo a passo abaixo para o servidor
 
 1 - Instalar as dependências
   Abra a pasta server e rode npm install ou yarn.
