@@ -10,7 +10,7 @@ obs: se preferir pode acessar o link web: https://contatos.vercel.app/ e apenas 
 
 2 - Iniciando os servidores
 
-  É preciso ter uma instância do mongodb rodando na sua máquina.
+  É necessário ter uma instância do mongodb rodando na sua máquina.
 
   Para iniciar localmente o servidor é preciso acessar a pasta server e rodar npm run dev ou yarn dev. O servidor irá rodar na porta 4000.
 
